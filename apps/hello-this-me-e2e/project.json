@@ -1,0 +1,29 @@
+{
+  "name": "hello-this-me-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/hello-this-me-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/hello-this-me-e2e/cypress.json",
+        "devServerTarget": "hello-this-me:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "hello-this-me:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/hello-this-me-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["hello-this-me"]
+}
